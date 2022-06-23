@@ -6,7 +6,7 @@
 /*   By: ajaidi <ajaidi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:50:27 by anasjaidi         #+#    #+#             */
-/*   Updated: 2022/06/23 18:44:16 by ajaidi           ###   ########.fr       */
+/*   Updated: 2022/06/23 18:52:42 by ajaidi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,26 @@ int	lst_size(void **lst)
 	return (i);
 }
 
-void	**append_array(void **lst, void *adr)
+void	lst_free(void ***lst)
+{
+	int	size;
+	int	i;
+
+	size = lst_size(lst);
+	i = -1;
+	while (++i <= size)
+		free(lst[i]);
+	free(lst);
+}
+
+void	append_array(void ***list, void *adr)
 {
 	void	**new;
+	void	**lst;
 	int		size;
 	int		i;
 
+	lst = *lst;
 	size = lst_size(lst);
 	i = -1;
 	new = malloc((size + 2) * sizeof(void *));
@@ -91,6 +105,17 @@ void	**append_array(void **lst, void *adr)
 	new[size] = adr;
 	new[size + 1] = null;
 	lst_free(lst);
-	return (new);
+	*list = new;
+}
+
+void	*ft_malloc_array(void	***lst, size_t size)
+{
+	void	*ret;
+
+	ret = malloc(size);
+	if (!ret)
+		return (null);
+	else
+		return (append_array(lst, ret), ret);
 }
 //end array methode
