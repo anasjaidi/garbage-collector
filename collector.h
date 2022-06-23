@@ -12,8 +12,13 @@
 
 
 
-// start structure for linked list methode
+// start linked list methode
 
+
+t_collector	*new_node(void *adr);
+t_collector **append_adr(t_collector **root, void *adr);
+void    	*ft_col_malloc(t_collector **root, size_t size);
+void    	ft_collect(t_collector **root, t_collector *node);
 typedef struct collector
 {
 	void				*adr;
