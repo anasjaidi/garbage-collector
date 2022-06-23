@@ -6,7 +6,7 @@
 /*   By: ajaidi <ajaidi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:50:27 by anasjaidi         #+#    #+#             */
-/*   Updated: 2022/06/23 16:47:37 by ajaidi           ###   ########.fr       */
+/*   Updated: 2022/06/23 16:49:38 by ajaidi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,16 @@ void    *ft_col_malloc(t_collector **root, size_t size)
         return (null);
     else
         return (append_adr(root, ptr), ptr);
+}
+
+
+void    ft_collect(t_collector **root, t_collector *node)
+{
+    if (!node)
+        return ;
+    ft_collect(root, node->next);
+    free(node->adr);
+    free(node);
 }
 
 // end linked list methode
