@@ -6,7 +6,7 @@
 /*   By: ajaidi <ajaidi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:50:27 by anasjaidi         #+#    #+#             */
-/*   Updated: 2022/06/23 16:44:44 by ajaidi           ###   ########.fr       */
+/*   Updated: 2022/06/23 16:46:10 by ajaidi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,21 @@ t_collector	*new_node(void *adr)
 	node->adr = adr;
 	node->next = null;
 	return (node);
+}
+
+t_collector **append_adr(t_collector **root, void *adr)
+{
+    t_collector *node;
+    t_collector *tmp;
+
+    node = new_node(adr);
+    if (!*root)
+        return (*root = node, root);
+    tmp = *root;
+    while (tmp->next)
+        tmp = tmp->next;
+    tmp->next = node;
+    return (root);
 }
 
 // end linked list methode
