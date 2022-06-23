@@ -6,7 +6,7 @@
 /*   By: ajaidi <ajaidi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 15:50:27 by anasjaidi         #+#    #+#             */
-/*   Updated: 2022/06/23 18:25:39 by ajaidi           ###   ########.fr       */
+/*   Updated: 2022/06/23 18:44:16 by ajaidi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,20 @@ int	lst_size(void **lst)
 	return (i);
 }
 
+void	**append_array(void **lst, void *adr)
+{
+	void	**new;
+	int		size;
+	int		i;
+
+	size = lst_size(lst);
+	i = -1;
+	new = malloc((size + 2) * sizeof(void *));
+	while (++i < size)
+		new[i] = lst[i];
+	new[size] = adr;
+	new[size + 1] = null;
+	lst_free(lst);
+	return (new);
+}
 //end array methode
